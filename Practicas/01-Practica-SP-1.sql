@@ -13,3 +13,4 @@ go
 
 exec sp_SolicitarPromedioProductos 2
 exec sp_SolicitarPromedioProductos @catego = 5
+exec sp_SolicitarPromedioProductos @catego = 3
