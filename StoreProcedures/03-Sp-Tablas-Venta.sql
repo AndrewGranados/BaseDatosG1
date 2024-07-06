@@ -231,19 +231,31 @@ as begin
 	on c.clientebk = cu.CustomerID
 	left join ETLEmpresa.dbo.Ventas as v
 	on od.OrderID = v.productoid
-	where v.clienteid is null;
-	select * from Ventas;
-	select * from NORTHWND.dbo.Customers;
+	where v.cantidad is null;
 
-	update p 
-	set p.empresa = upper(s.CompanyName),
-		p.ciudad = upper(s.City),
-		p.region = upper(isnull(s.region, 'SIN REGION')),
-		p.pais = upper(s.Country),
-		p.homepage = isnull(s.HomePage, 'SIN URL')
-	from NORTHWND.dbo.Suppliers as s
-	inner join ETLEmpresa.dbo.Proveedor as p
-	on s.SupplierID = p.proveedorid
+	select * from Ventas;
+	select * from NORTHWND.dbo.[Order Details];
+
+	update v 
+	set v.cantidad = od.Quantity--,
+		--v.precio = od.UnitPrice
+	from NORTHWND.dbo.[Order Details] as od
+	inner join ETLEmpresa.dbo.Ventas as v
+	on od.ProductID = v.productoid
+
+
+	--select * from NORTHWND.dbo.[Order Details]
+	--where Quantity = 1111 and ProductID = 11 and Quantity = 1110;
+
+	--select * from ETLEmpresa.dbo.Ventas
+	--where cantidad = 1111;
+	
+	--update NORTHWND.dbo.[Order Details]
+	--set quantity = 1111 where ProductID = 11 and Quantity = 1110;
+
+end
+
+truncate table etlempresa.dbo.ventas
 
 	--select * from NORTHWND.dbo.Suppliers
 	--where SupplierID = 2;
@@ -253,9 +265,3 @@ as begin
 	
 	--update NORTHWND.dbo.Suppliers 
 	--set city = 'Tepeji' where SupplierID = 2
-
-end
-
-truncate table etlempresa.dbo.Proveedor
-
-select * from Cliente
