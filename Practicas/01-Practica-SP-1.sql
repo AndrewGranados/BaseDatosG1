@@ -27,11 +27,3 @@ end
 
 exec listadoEmpleados '1992-05-01', '1992-12-01'
 
---procedimiento para actualizar el precio de un producto y registrar el cambio
---proceso: paso n.1 -> crear un sp "ActualizarPrecioProducto"
---paso n.2 -> crear una tabla que se llame cambio de precios, los campos que va a tener es: 
---cambioid int identity(1,1) primary key
---productoid int 
---precioAnterior money
---precioNuevo money
---fechaCambio daytime
